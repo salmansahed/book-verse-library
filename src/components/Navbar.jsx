@@ -58,7 +58,7 @@ const Navbar = () => {
 
         {/* Desktop Login Button */}
         <div className="md:block hidden">
-          <Link href={"/login"}>
+          <Link href={"/auth/login"}>
             <Button>Login</Button>
           </Link>
         </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t p-4 z-50">
           <ul className="flex flex-col gap-4 items-center">
             {menuItems}
-            <Link href={"/login"}>
+            <Link href={"/auth/login"}>
               <Button>Login</Button>
             </Link>
           </ul>
