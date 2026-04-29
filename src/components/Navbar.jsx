@@ -5,10 +5,17 @@ import { usePathname } from "next/navigation";
 import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { IoLogInOutline } from "react-icons/io5";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const pathName = usePathname();
+
+  const { data } = authClient.useSession();
+  const user = data?.user;
+  console.log(user);
 
   const menuItems = (
     <>
@@ -51,45 +58,80 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="md:flex items-center gap-8 lg:gap-12 hidden">
+        <ul className="lg:flex items-center gap-8 xl:gap-12 hidden">
           {menuItems}
         </ul>
 
         {/* Hamburger Icon */}
-        <div className="md:hidden">
+        <div className="lg:hidden flex items-center gap-3">
+          {user && (
+            <p className="text-xl font-semibold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent">
+              Welcome, {user?.name?.split(" ").slice(0, 1).join(" ")}
+            </p>
+          )}
           <Hamburger size={22} toggled={isOpen} toggle={setOpen} />
         </div>
 
         {/* Desktop Login Button */}
-        <div className="md:block hidden">
-          <Link href={"/auth/login"}>
-            <Button
-              className={
-                "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
-              }
-            >
-              <IoLogInOutline />
-              Login
-            </Button>
-          </Link>
-        </div>
-      </div>
-      {/* Mobile Menu (Conditional Rendering) */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t p-4 z-50">
-          <ul className="flex flex-col gap-4 items-center">
-            {menuItems}
+
+        <div className="lg:block hidden">
+          {user ? (
+            <div className="flex items-center gap-3">
+              <h2 className="text-xl font-semibold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent">
+                Welcome, {user?.name?.split(" ").slice(0, 2).join(" ")}
+              </h2>
+              <Button
+                className={
+                  "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
+                }
+                onClick={async () => await authClient.signOut()}
+              >
+                Logout
+                <FaSignOutAlt />
+              </Button>
+            </div>
+          ) : (
             <Link href={"/auth/login"}>
               <Button
                 className={
                   "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
                 }
-                onClick={() => setOpen(false)}
               >
                 <IoLogInOutline />
                 Login
               </Button>
             </Link>
+          )}
+        </div>
+      </div>
+      {/* Mobile Menu (Conditional Rendering) */}
+      {isOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t p-4 z-50">
+          <ul className="flex flex-col gap-4 items-center">
+            {menuItems}
+            {user ? (
+              <Button
+                className={
+                  "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
+                }
+                onClick={async () => await authClient.signOut()}
+              >
+                Logout
+                <FaSignOutAlt />
+              </Button>
+            ) : (
+              <Link href={"/auth/login"}>
+                <Button
+                  className={
+                    "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
+                  }
+                  onClick={() => setOpen(false)}
+                >
+                  <IoLogInOutline />
+                  Login
+                </Button>
+              </Link>
+            )}
           </ul>
         </div>
       )}

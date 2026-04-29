@@ -50,7 +50,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen px-2">
         <Form
           className="flex w-110 flex-col gap-4 shadow-lg rounded-lg border p-6 space-y-3"
           onSubmit={onSubmit}
