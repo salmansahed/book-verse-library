@@ -9,12 +9,17 @@ import {
   Input,
   Label,
   TextField,
+  InputGroup,
 } from "@heroui/react";
+import { Eye, EyeSlash } from "@gravity-ui/icons";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const RegistrationPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -28,12 +33,18 @@ const RegistrationPage = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      redirect("/login");
+      redirect("/auth/login");
     }
   };
 
+  const handleGooleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen px-2">
       <Form
         className="flex w-110 flex-col gap-4 shadow-lg rounded-lg border p-6 space-y-3"
         onSubmit={onSubmit}
@@ -101,10 +112,9 @@ const RegistrationPage = () => {
         </TextField>
         {/* Password Field */}
         <TextField
-          isRequired
-          minLength={8}
+          className="w-full"
           name="password"
-          type="password"
+          isRequired
           validate={(value) => {
             if (value.length < 8) {
               return "Password must be at least 8 characters";
@@ -119,10 +129,33 @@ const RegistrationPage = () => {
           }}
         >
           <Label>Password</Label>
-          <Input placeholder="Enter your password" />
+          <InputGroup>
+            <InputGroup.Input
+              className="w-full"
+              type={isVisible ? "text" : "password"}
+              placeholder="Enter your password"
+            />
+            <InputGroup.Suffix className="pr-0">
+              <Button
+                isIconOnly
+                aria-label={isVisible ? "Hide password" : "Show password"}
+                size="sm"
+                variant="ghost"
+                onPress={() => setIsVisible(!isVisible)}
+              >
+                {isVisible ? (
+                  <Eye className="size-4" />
+                ) : (
+                  <EyeSlash className="size-4" />
+                )}
+              </Button>
+            </InputGroup.Suffix>
+          </InputGroup>
+
           <Description>
             Must be at least 8 characters with 1 uppercase and 1 number
           </Description>
+
           <FieldError />
         </TextField>
         <div className="flex gap-2">
@@ -135,16 +168,25 @@ const RegistrationPage = () => {
             Create Account
           </Button>
         </div>
-        <div className="flex items-center justify-center">
-          <p>Or</p>
-        </div>
+        <hr />
         <div className="flex items-center justify-center">
           <p>
             Already have an account?{" "}
-            <Link href="/login" className="text-blue-500 hover:underline">
+            <Link href="/auth/login" className="text-blue-500 hover:underline">
               Login
             </Link>
           </p>
+        </div>
+        <div className="flex flex-col gap-3 items-center justify-center">
+          <p className="text-xl font-semibold">Social Login</p>
+          <Button
+            onClick={handleGooleLogin}
+            variant="secondary"
+            className="text-black w-full"
+          >
+            <FcGoogle />
+            Login with Google
+          </Button>
         </div>
       </Form>
     </div>
