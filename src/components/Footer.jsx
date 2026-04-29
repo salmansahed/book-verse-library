@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* 1. Brand Section */}
           <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-green-600">
-              Book<span className="text-blue-600">Verse</span>
+            <h1 className="text-2xl font-extrabold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent w-fit">
+              BookVerse
             </h1>
             <p className="text-zinc-600 text-sm leading-relaxed">
               Your ultimate destination for a vast collection of books. Read,

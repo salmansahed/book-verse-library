@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
+import { IoLogInOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -12,21 +13,21 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li
-        className={`${pathName === "/" && "border-2 px-3 py-0.5 rounded-full border-blue-500 bg-blue-100"} hover:text-zinc-700 transition-all font-medium`}
+        className={`transition-all duration-300 ease-in-out font-medium px-3 py-0.5 rounded-full ${pathName === "/" ? "bg-indigo-50 border border-indigo-200 text-indigo-600" : "text-zinc-600 hover:text-indigo-600"}`}
       >
         <Link href={"/"} onClick={() => setOpen(false)}>
           Home
         </Link>
       </li>
       <li
-        className={`${pathName === "/all-books" && "border-2 px-3 py-0.5 rounded-full border-blue-500 bg-blue-100"} hover:text-zinc-700 transition-all font-medium`}
+        className={`transition-all duration-300 ease-in-out font-medium px-3 py-0.5 rounded-full ${pathName === "/all-books" ? "bg-indigo-50 border border-indigo-200 text-indigo-600" : "text-zinc-600 hover:text-indigo-600"}`}
       >
         <Link href={"/all-books"} onClick={() => setOpen(false)}>
           All Books
         </Link>
       </li>
       <li
-        className={`${pathName === "/my-profile" && "border-2 px-3 py-0.5 rounded-full border-blue-500 bg-blue-100"} hover:text-zinc-700 transition-all font-medium`}
+        className={`transition-all duration-300 ease-in-out font-medium px-3 py-0.5 rounded-full ${pathName === "/my-profile" ? "bg-indigo-50 border border-indigo-200 text-indigo-600" : "text-zinc-600 hover:text-indigo-600"}`}
       >
         <Link href={"/my-profile"} onClick={() => setOpen(false)}>
           My Profile
@@ -41,8 +42,11 @@ const Navbar = () => {
       {/* Relative */}
       <div className="flex justify-between items-center container mx-auto px-2">
         <div>
-          <Link href={"/"} className="text-2xl font-bold text-green-600">
-            Book<span className="text-blue-600">Verse</span>
+          <Link
+            href={"/"}
+            className="text-2xl font-extrabold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent"
+          >
+            BookVerse
           </Link>
         </div>
 
@@ -59,7 +63,14 @@ const Navbar = () => {
         {/* Desktop Login Button */}
         <div className="md:block hidden">
           <Link href={"/auth/login"}>
-            <Button>Login</Button>
+            <Button
+              className={
+                "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
+              }
+            >
+              <IoLogInOutline />
+              Login
+            </Button>
           </Link>
         </div>
       </div>
@@ -69,7 +80,15 @@ const Navbar = () => {
           <ul className="flex flex-col gap-4 items-center">
             {menuItems}
             <Link href={"/auth/login"}>
-              <Button>Login</Button>
+              <Button
+                className={
+                  "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
+                }
+                onClick={() => setOpen(false)}
+              >
+                <IoLogInOutline />
+                Login
+              </Button>
             </Link>
           </ul>
         </div>
