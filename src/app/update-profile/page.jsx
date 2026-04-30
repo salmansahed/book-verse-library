@@ -34,9 +34,10 @@ const UpdateProfilePage = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <Form
-        className="flex w-96 flex-col gap-4 shadow border rounded-md p-6"
+        className="flex w-96 flex-col gap-4 shadow border rounded-md p-6 space-y-3"
         onSubmit={onSubmit}
       >
+        <h2 className="text-2xl font-bold text-center">Update Your Profile</h2>
         {/* Name */}
         <TextField
           isRequired
