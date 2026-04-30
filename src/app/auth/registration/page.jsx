@@ -86,6 +86,7 @@ const RegistrationPage = () => {
         </TextField>
         {/* Photo Field */}
         <TextField
+          isRequired
           name="photo"
           type="url"
           validate={(value) => {
@@ -104,9 +105,7 @@ const RegistrationPage = () => {
             return null;
           }}
         >
-          <Label>
-            Photo Url <span className="text-red-500">*</span>
-          </Label>
+          <Label>Photo Url</Label>
           <Input placeholder="https://example.com/photo.jpg" />
           <FieldError />
         </TextField>
