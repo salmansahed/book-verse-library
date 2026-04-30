@@ -7,8 +7,8 @@ const FeaturedBooks = async() => {
   console.log(fourBooks);
 
   return (
-    <div className="container mx-auto px-2 mt-30 mb-12">
-      <h1 className="text-4xl font-bold text-gray-800 text-center mb-10">
+    <div className="container mx-auto px-2 mt-16 sm:mt-18 md:mt-20 xl:mt-26 mb-12">
+      <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-8 md:mb-10">
         Featured Books
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
