@@ -6,7 +6,6 @@ import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { IoLogInOutline } from "react-icons/io5";
 import { authClient } from "@/lib/auth-client";
-import Image from "next/image";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = () => {
