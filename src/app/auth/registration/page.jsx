@@ -13,12 +13,13 @@ import {
 } from "@heroui/react";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const RegistrationPage = () => {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const RegistrationPage = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      redirect("/auth/login");
+      router.push("/auth/login");
     }
   };
 
@@ -130,6 +131,7 @@ const RegistrationPage = () => {
           <Label>Password</Label>
           <InputGroup>
             <InputGroup.Input
+              name="password"
               className="w-full"
               type={isVisible ? "text" : "password"}
               placeholder="Enter your password"

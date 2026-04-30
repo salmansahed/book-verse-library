@@ -13,14 +13,15 @@ import {
 } from "@heroui/react";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { BsGoogle } from "react-icons/bs";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = async (e) => {
@@ -38,7 +39,7 @@ const LoginPage = () => {
       toast.error(error.message);
     } else {
       toast.success("Login successful! Redirecting...");
-      redirect("/");
+      router.push("/");
     }
   };
 

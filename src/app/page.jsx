@@ -1,7 +1,11 @@
-const Home = async () => {
+import Banner from "@/components/Banner";
+import HomeMarquee from "@/components/HomeMarquee";
+
+const Home = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Banner />
+      <HomeMarquee />
     </div>
   );
 };
