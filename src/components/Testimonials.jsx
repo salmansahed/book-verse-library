@@ -75,7 +75,7 @@ const Testimonials = () => {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="border p-6 rounded-md space-y-5 shadow-lg">
+            <div className="border p-6 rounded-md space-y-5 shadow-lg mb-10">
               <div className="flex justify-between">
                 <div>
                   <FaQuoteLeft className="text-gray-200 text-3xl" />
