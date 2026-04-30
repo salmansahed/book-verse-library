@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import FeaturedBooks from "@/components/FeaturedBooks";
 import HomeMarquee from "@/components/HomeMarquee";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Banner />
       <HomeMarquee />
+      <FeaturedBooks/>
     </div>
   );
 };

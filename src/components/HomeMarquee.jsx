@@ -2,7 +2,7 @@ import Marquee from "react-fast-marquee";
 
 const HomeMarquee = () => {
   return (
-    <div className="container mx-auto my-6">
+    <div className="container mx-auto my-6 px-2">
       <Marquee
         pauseOnHover={true}
         speed={80}
