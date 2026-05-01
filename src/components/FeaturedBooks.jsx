@@ -1,10 +1,11 @@
 import BookCard from "./BookCard";
 
-const FeaturedBooks = async() => {
-  const res = await fetch("https://book-verse-library-server.onrender.com/books")
+const FeaturedBooks = async () => {
+  const res = await fetch(
+    "https://book-verse-library-server.onrender.com/books",
+  );
   const books = await res.json();
   const fourBooks = books.slice(0, 4);
-  console.log(fourBooks);
 
   return (
     <div className="container mx-auto px-2 mt-16 sm:mt-18 md:mt-20 xl:mt-26 mb-12">

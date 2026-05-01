@@ -13,7 +13,7 @@ const Banner = () => {
         <div className="absolute inset-0 bg-black/60 rounded-lg"></div>
 
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 sm:mb-10 animate-fadeIn">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 sm:mb-10">
             Find Your Next Read
           </h1>
 

@@ -14,7 +14,6 @@ const Navbar = () => {
 
   const { data } = authClient.useSession();
   const user = data?.user;
-  console.log(user);
 
   const menuItems = (
     <>
