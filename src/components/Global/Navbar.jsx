@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const pathName = usePathname();
 
-  const { data } = authClient.useSession();
+  const { data, isPending } = authClient.useSession();
   const user = data?.user;
 
   const menuItems = (
@@ -73,7 +73,12 @@ const Navbar = () => {
         {/* Desktop Login Button */}
 
         <div className="lg:block hidden">
-          {user ? (
+          {isPending ? (
+            <div className="flex items-center space-x-2">
+              <div className="w-24 h-5 rounded-full bg-gray-300  animate-pulse"></div>
+              <div className="w-25 h-9 rounded-full bg-gray-300 animate-pulse"></div>
+            </div>
+          ) : user ? (
             <div className="flex items-center gap-3">
               <h2 className="text-xl font-semibold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent">
                 Welcome, {user?.name?.split(" ").slice(0, 2).join(" ")}

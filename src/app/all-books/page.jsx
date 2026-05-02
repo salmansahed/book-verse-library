@@ -1,8 +1,8 @@
-import BookCard from "@/components/BookCard";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
-import SearchBar from "@/components/SearchBar";
+import BookCard from "@/components/All-Books/BookCard";
+import SearchBar from "@/components/All-Books/SearchBar";
 
 const AllBooksPage = async ({ searchParams }) => {
   const params = await searchParams;

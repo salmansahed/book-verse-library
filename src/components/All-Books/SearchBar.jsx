@@ -40,7 +40,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-center my-8 sm:my-12">
+    <div className="flex items-center justify-center">
       <div className="relative">
         <input
           type="text"

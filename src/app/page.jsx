@@ -1,8 +1,8 @@
-import Banner from "@/components/Banner";
-import FeaturedBooks from "@/components/FeaturedBooks";
-import HomeMarquee from "@/components/HomeMarquee";
-import Newsletter from "@/components/Newsletter";
-import Testimonials from "@/components/Testimonials";
+import Banner from "@/components/Home/Banner";
+import FeaturedBooks from "@/components/Home/FeaturedBooks";
+import HomeMarquee from "@/components/Home/HomeMarquee";
+import Newsletter from "@/components/Home/Newsletter";
+import Testimonials from "@/components/Home/Testimonials";
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import banner from "../assets/images/banner.jpg";
+import banner from "../../assets/images/banner.jpg";
 import { Button } from "@heroui/react";
 import { IoBookSharp } from "react-icons/io5";
 

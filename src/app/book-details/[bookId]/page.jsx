@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { FaArrowRight, FaBookOpen } from "react-icons/fa";
-import BorrowButton from "@/components/BorrowButton";
 import Link from "next/link";
+import BorrowButton from "@/components/Book-Details/BorrowButton";
 
 const BookDetails = async ({ params }) => {
   const { bookId } = await params;
