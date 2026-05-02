@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Button } from "@heroui/react";
 import { FaBookOpen } from "react-icons/fa";
+import BorrowButton from "@/components/BorrowButton";
 
 const BookDetails = async ({ params }) => {
   const { bookId } = await params;
@@ -78,9 +78,7 @@ const BookDetails = async ({ params }) => {
           </div>
 
           <div className="pt-4">
-            <Button className="py-8 rounded-2xl bg-indigo-800 px-12 text-lg font-bold text-white shadow-xl transition-all hover:bg-indigo-900 active:scale-95">
-              Borrow This Book
-            </Button>
+            <BorrowButton />
           </div>
         </div>
       </div>
