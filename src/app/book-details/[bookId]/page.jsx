@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { FaBookOpen } from "react-icons/fa";
+import { FaArrowRight, FaBookOpen } from "react-icons/fa";
 import BorrowButton from "@/components/BorrowButton";
+import Link from "next/link";
 
 const BookDetails = async ({ params }) => {
   const { bookId } = await params;
@@ -13,8 +14,37 @@ const BookDetails = async ({ params }) => {
 
   if (!res.ok)
     return (
-      <div className="flex min-h-[60vh] items-center justify-center text-xl font-semibold text-gray-500">
-        Book not found!
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+        <div className="flex flex-col items-center">
+          <h1 className="text-3xl font-bold text-gray-400 uppercase tracking-widest">
+            No
+          </h1>
+
+          <div className="flex font-black text-8xl md:text-[190px] tracking-tighter">
+            <span className="text-indigo-600">B</span>
+            <span className="text-rose-500">O</span>
+            <span className="text-amber-500">O</span>
+            <span className="text-emerald-500">K</span>
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-400 uppercase tracking-widest mt-2">
+            Found
+          </h1>
+        </div>
+
+        <p className="mt-8 text-gray-500 max-w-sm mx-auto font-medium">
+          We couldn&apos;t find any results matching your search.
+        </p>
+
+        <div className="mt-10">
+          <Link
+            href="/all-books"
+            className="bg-gray-900 text-white text-sm font-bold px-10 py-4 rounded-xl shadow-lg hover:bg-indigo-800 transition-all active:scale-95 flex items-center gap-2"
+          >
+            <span>View All Books</span>
+            <FaArrowRight />
+          </Link>
+        </div>
       </div>
     );
 
