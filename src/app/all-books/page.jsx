@@ -2,10 +2,12 @@ import BookCard from "@/components/BookCard";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
+import SearchBar from "@/components/SearchBar";
 
 const AllBooksPage = async ({ searchParams }) => {
   const params = await searchParams;
   const selectedCategory = params?.category || "All";
+  const searchQuery = params?.search || "";
   const res = await fetch(
     "https://book-verse-library-server.onrender.com/books",
     {
@@ -16,25 +18,21 @@ const AllBooksPage = async ({ searchParams }) => {
 
   const categories = ["All", ...new Set(books.map((book) => book.category))];
 
-  const filterByCategory = books.filter(
-    (book) => selectedCategory === "All" || book.category === selectedCategory,
-  );
+  const filterByCategory = books.filter((book) => {
+    const matchesCategory =
+      selectedCategory === "All" || book.category === selectedCategory;
+    const matchesSearch = book.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="container mx-auto mb-10 sm:mb-20 px-2">
       {/* Search Feild */}
       <div className="flex items-center justify-center my-8 sm:my-12">
-        <div className="relative">
-          <input
-            type="search"
-            placeholder="Search book..."
-            className="rounded-xl border-2 rounded-r-none py-1.5 border-r-0 w-60 sm:w-100 md:w-150 pl-9 shadow"
-          />
-          <IoSearch className="absolute left-2 top-2 text-2xl text-zinc-500 " />
-        </div>
-        <Button className="rounded-xl rounded-l-none py-5 shadow">
-          Search
-        </Button>
+        <SearchBar />
       </div>
 
       {/* Books & Category */}
@@ -45,7 +43,7 @@ const AllBooksPage = async ({ searchParams }) => {
           {categories.map((category) => (
             <Link
               key={category}
-              href={`/all-books?category=${category}`}
+              href={`/all-books?category=${category}${searchQuery ? `&search=${searchQuery}` : ""}`}
               className={`${category === selectedCategory && "bg-indigo-600 text-white font-semibold"} transition-all duration-300 px-3 py-2 rounded-md border-2`}
             >
               {category}

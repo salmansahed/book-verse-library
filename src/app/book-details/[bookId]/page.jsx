@@ -14,7 +14,7 @@ const BookDetails = async ({ params }) => {
 
   if (!res.ok)
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+      <div className="flex h-[90vh] sm:min-h-screen flex-col items-center justify-center px-4 text-center">
         <div className="flex flex-col items-center">
           <h1 className="text-3xl font-bold text-gray-400 uppercase tracking-widest">
             No
@@ -36,7 +36,7 @@ const BookDetails = async ({ params }) => {
           We couldn&apos;t find any results matching your search.
         </p>
 
-        <div className="mt-10">
+        <div className="mt-6 sm:mt-10">
           <Link
             href="/all-books"
             className="bg-gray-900 text-white text-sm font-bold px-10 py-4 rounded-xl shadow-lg hover:bg-indigo-800 transition-all active:scale-95 flex items-center gap-2"
