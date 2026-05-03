@@ -8,8 +8,6 @@ import { IoSearch } from "react-icons/io5";
 const SearchBar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const check = searchParams.toString();
-  console.log('searchParams =>', check);
 
   const [searchTerm, setSearchTerm] = useState(
     searchParams.get("search") || "",

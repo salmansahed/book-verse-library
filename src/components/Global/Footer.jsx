@@ -56,11 +56,11 @@ const Footer = () => {
 
           {/* 3. Contact Us Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-zinc-800">
+            <h3 className="text-lg font-semisbold font-semibold mb-4 text-zinc-800">
               Contact Us
             </h3>
             <ul className="text-zinc-600 text-sm space-y-2">
-              <li>Email: support@bookverse.com</li>
+              <li>Email: salmansahedbd@gmail.com</li>
               <li>Phone: +880 1234 567890</li>
               <li>Location: Bhaluka, Mymensingh, Bangladesh</li>
             </ul>
@@ -68,11 +68,19 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright Section */}
-        <div className="border-t mt-10 pt-8 text-center text-zinc-500 text-xs">
+        <div className="border-t mt-10 pt-8 text-center text-zinc-500 text-sm flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between">
           <p>
             © {new Date().getFullYear()} BookVerse. All rights reserved by
             Salman Sahed.
           </p>
+          <div className="flex flex-row gap-8">
+            <Link href={""} className="hover:text-purple-600 transition-all">
+              Terms & Conditions
+            </Link>
+            <Link href={""} className="hover:text-purple-600 transition-all">
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

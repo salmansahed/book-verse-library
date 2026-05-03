@@ -15,7 +15,7 @@ const LoginPage = async () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-2">
+    <div className="flex items-center justify-center h-[80vh] sm:min-h-screen px-2 bg-gray-100">
       <LoginForm />
     </div>
   );

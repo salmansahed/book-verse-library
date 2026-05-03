@@ -46,7 +46,7 @@ const RegistrationForm = () => {
 
   return (
     <Form
-      className="flex w-110 flex-col gap-4 shadow-lg rounded-lg border p-6 space-y-3"
+      className="flex w-110 flex-col gap-4 shadow-xl shadow-black/20 rounded-3xl border p-6 space-y-3 bg-white"
       onSubmit={onSubmit}
     >
       <div>
@@ -65,7 +65,7 @@ const RegistrationForm = () => {
         }}
       >
         <Label>Name</Label>
-        <Input placeholder="John Doe" />
+        <Input placeholder="Enter your name" />
         <FieldError />
       </TextField>
       {/* Email Field */}
@@ -81,32 +81,36 @@ const RegistrationForm = () => {
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="john@example.com" />
+        <Input placeholder="Enter your email address" />
         <FieldError />
       </TextField>
       {/* Photo Field */}
+
       <TextField
         isRequired
         name="photo"
-        type="url"
         validate={(value) => {
-          if (!value || value.trim() === "") {
-            return "Photo URL is required";
+          const trimmedValue = value.trim();
+
+          if (trimmedValue === "") {
+            return "Image URL is required";
           }
 
-          if (
-            !/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\?[^\s]*)?$/i.test(
-              value,
-            )
-          ) {
-            return "Please enter a valid photo URL";
+          const urlPattern =
+            /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))$/i;
+          if (!urlPattern.test(trimmedValue)) {
+            return "Please enter a valid image URL (jpg, png, webp, etc.)";
           }
 
           return null;
         }}
       >
         <Label>Photo Url</Label>
-        <Input placeholder="https://example.com/photo.jpg" />
+        <Input
+          type="url"
+          placeholder="https://example.com/your-photo.jpg"
+          className="focus:ring-2 focus:ring-indigo-500"
+        />
         <FieldError />
       </TextField>
       {/* Password Field */}
@@ -182,7 +186,7 @@ const RegistrationForm = () => {
         <Button
           onClick={handleGooleLogin}
           variant="secondary"
-          className="text-black w-full"
+          className="text-black w-full shadow shadow-black/20"
         >
           <FcGoogle />
           Login with Google

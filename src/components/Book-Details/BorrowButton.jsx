@@ -26,7 +26,6 @@ const BorrowButton = () => {
 
       toast.success("Successfully borrowed the book!");
     } catch (error) {
-      console.error("Auth check failed:", error);
       toast.error("Something went wrong, please try again.");
     } finally {
       setIsChecking(false);

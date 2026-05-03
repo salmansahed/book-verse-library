@@ -51,7 +51,7 @@ const LoginForm = () => {
 
   return (
     <Form
-      className="flex w-110 flex-col gap-4 shadow-lg rounded-lg border p-6 space-y-3"
+      className="flex w-110 flex-col gap-4 shadow-xl shadow-black/20 rounded-3xl border p-6 space-y-3 bg-white"
       onSubmit={onSubmit}
     >
       <div>
@@ -73,7 +73,7 @@ const LoginForm = () => {
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="john@example.com" />
+        <Input placeholder="Enter your email address" />
         <FieldError />
       </TextField>
 
@@ -152,7 +152,7 @@ const LoginForm = () => {
         <Button
           onClick={handleGooleLogin}
           variant="secondary"
-          className="text-black w-full"
+          className="text-black w-full shadow-sm shadow-black/20"
         >
           <FcGoogle />
           Login with Google
