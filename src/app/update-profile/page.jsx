@@ -32,7 +32,7 @@ const UpdateProfilePage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen px-3">
       <Form
         className="flex w-96 flex-col gap-4 shadow border rounded-md p-6 space-y-3"
         onSubmit={onSubmit}
@@ -92,7 +92,7 @@ const UpdateProfilePage = () => {
               "w-full bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
             }
           >
-            Complete Update <MdCheckCircleOutline />
+            Save Changes <MdCheckCircleOutline />
           </Button>
         </div>
       </Form>
