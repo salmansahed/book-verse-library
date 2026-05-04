@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "404 - Page Not Found | BookVerse",
+  description:
+    "Oops! The page you are looking for doesn't exist. Head back to BookVerse to explore our digital library and find your next favorite book.",
+};
+
 import Link from "next/link";
 
 const NotFound = () => {

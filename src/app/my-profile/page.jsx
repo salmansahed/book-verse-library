@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "My Profile | BookVerse",
+  description: "View and manage your personal profile, update your information",
+};
+
 import SessionWatcher from "@/components/Profile/SessionWatcher";
 import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";

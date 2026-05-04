@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Update Profile | BookVerse",
+  description:
+    "Keep your account up to date by modifying your profile information, including your name and profile picture URL. Save your changes to personalize your experience on BookVerse.",
+};
+
 import SessionWatcher from "@/components/Profile/SessionWatcher";
 import UpdateProfileForm from "@/components/Profile/UpdateProfileForm";
 

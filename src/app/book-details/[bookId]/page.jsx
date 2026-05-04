@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Book Details | BookVerse",
+  description:
+    "Explore detailed information about your favorite books, including descriptions, authors, categories, and available quantity. Log in to access the borrow button and start reading today.",
+};
+
 import React from "react";
 import Image from "next/image";
 import { FaArrowRight, FaBookOpen } from "react-icons/fa";

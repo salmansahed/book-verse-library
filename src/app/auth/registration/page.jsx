@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Register | BookVerse",
+  description:
+    "Join the BookVerse community today! Create a new account to start your digital library journey, borrow your favorite books, and manage your personal profile.",
+};
+
 import RegistrationForm from "@/components/Auth/RegistrationForm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";

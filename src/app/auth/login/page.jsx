@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Login | BookVerse",
+  description:
+    "Log in to your BookVerse account to unlock digital borrowing. Securely sign in to manage your library and profile.",
+};
+
 import LoginForm from "@/components/Auth/LoginForm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";

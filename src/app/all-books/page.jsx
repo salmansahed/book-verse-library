@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "All Books | BookVerse",
+  description:
+    "Explore our extensive collection of books, search by title, and filter by categories like Story, Tech, or Science to find your next great read.",
+};
+
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { IoSearch } from "react-icons/io5";
