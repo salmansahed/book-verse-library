@@ -8,6 +8,26 @@ BookVerse is a modern web application designed to transform the traditional libr
 
 ---
 
+## 📸 Project Screenshots
+
+<p align="center">
+  <table>
+    <tr>
+      <td align="center" valign="center">
+      <h3>Desktop View</h3>
+        <img src="src/assets/images/bookverse-home.png" alt="StudyNook Desktop View" width="100%" />
+      </td>
+      <td align="center" valign="center">
+      <h3>Mobile View</h3>
+        <img src="src/assets/images/bookverse-home-mobile.png" alt="StudyNook Mobile View" width="100%" />
+      </td>
+    </tr>
+
+  </table>
+</p>
+
+---
+
 ## 📖 Project Purpose
 
 The main goal of this project is to make library management simple and user-friendly. Special emphasis has been given to security and performance so that users can seamlessly browse a large collection of books without interruption.
