@@ -45,5 +45,49 @@ The main goal of this project is to make library management simple and user-frie
 - `hamburger-react` (for interactive hamburger menu icon in the responsive mobile navbar)
 
 ---
+## 🚀 Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/salmansahed/book-verse-library.git
+```
+
+### Navigate to Project Directory
+
+```bash
+cd book-verse-library
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Configure Environment Variables
+
+Create a `.env.local` file in the root directory and add:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+
+BETTER_AUTH_SECRET=your_secret_key
+BETTER_AUTH_URL=http://localhost:3000
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+---
 
 **Developed with ❤️ by [Salman Sahed](https://github.com/salmansahed)**
