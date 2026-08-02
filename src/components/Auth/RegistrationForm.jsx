@@ -46,7 +46,7 @@ const RegistrationForm = () => {
 
   return (
     <Form
-      className="flex w-110 flex-col gap-4 shadow-xl shadow-black/20 rounded-3xl border p-6 space-y-3 bg-white"
+      className="flex w-120 flex-col gap-4 shadow-xl shadow-black/20 rounded-3xl border p-6 space-y-3 bg-white"
       onSubmit={onSubmit}
     >
       <div>
@@ -166,7 +166,7 @@ const RegistrationForm = () => {
         <Button
           type="submit"
           className={
-            "w-full bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
+            "w-full primary-btn"
           }
         >
           Create Account
