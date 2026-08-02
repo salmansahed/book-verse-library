@@ -1,5 +1,6 @@
 import Banner from "@/components/Home/Banner";
 import CategoriesSection from "@/components/Home/CategoriesSection";
+import FaqSection from "@/components/Home/FaqSection";
 import FeaturedBooks from "@/components/Home/FeaturedBooks";
 import HomeMarquee from "@/components/Home/HomeMarquee";
 import HowItWorksSection from "@/components/Home/HowItWorksSection";
@@ -17,6 +18,7 @@ const Home = () => {
       <HowItWorksSection />
       <StatsSection />
       <Testimonials />
+      <FaqSection />
       <Newsletter />
     </div>
   );
