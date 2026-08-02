@@ -1,19 +1,13 @@
 "use client";
 
-import {
-  Pagination,
-  A11y,
-  Autoplay,
-} from "swiper/modules";
-
+import { Pagination, A11y, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import { Card } from "@heroui/react";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 import Image from "next/image";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Testimonials = () => {
   const reviews = [
@@ -52,63 +46,84 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="container mx-auto mt-30 lg:mt-36 px-2">
-      <div className="px-2 mb-10 md:mb-16 text-center">
-        <h2 className="text-4xl font-bold text-gray-800">Happy Readers</h2>
-        <div className="w-20 h-1 bg-black mx-auto mt-4 rounded-full"></div>
-        <p className="text-gray-500 mt-4 text-lg">
-          What our community says about BookVerse
+    <section className="container mx-auto my-16 md:my-24 px-4">
+      {/* Section Header */}
+      <div className="text-center mb-12">
+        <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full inline-block mb-3">
+          Community Feedback
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight">
+          Happy{" "}
+          <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            Readers
+          </span>
+        </h2>
+        <p className="text-zinc-500 text-sm sm:text-base mt-2 max-w-lg mx-auto">
+          What our reader community says about their experience with BookVerse.
         </p>
       </div>
 
+      {/* Swiper Slider */}
       <Swiper
         modules={[Pagination, A11y, Autoplay]}
         loop={true}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        spaceBetween={30}
+        spaceBetween={24}
         slidesPerView={1}
         breakpoints={{
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
         pagination={{ clickable: true, dynamicBullets: true }}
+        className="pb-14! [&_.swiper-pagination-bullet-active]:bg-indigo-600! [&_.swiper-pagination-bullet-active]:w-6! [&_.swiper-pagination-bullet]:transition-all"
       >
         {reviews.map((review) => (
-          <SwiperSlide key={review.id}>
-            <div className="border p-6 rounded-md space-y-5 shadow-lg mb-10">
-              <div className="flex justify-between">
-                <div>
-                  <FaQuoteLeft className="text-gray-200 text-3xl" />
+          <SwiperSlide key={review.id} className="h-auto">
+            <Card className="h-full bg-white border border-zinc-200/60 rounded-2xl p-6 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div className="space-y-4">
+                {/* Top Quote Icon & Stars */}
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                    <FaQuoteLeft className="text-lg" />
+                  </div>
+                  <div className="flex text-amber-400 gap-1 text-sm">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <FaStar key={i} />
+                    ))}
+                  </div>
                 </div>
-                <div className="flex text-yellow-500 gap-1.5">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
+
+                {/* Review Text */}
+                <p className="text-zinc-600 text-sm leading-relaxed italic">
+                  &quot;{review.review}&quot;
+                </p>
               </div>
-              <p className="italic text-center">&quot;{review.review}&quot;</p>
-              <hr />
-              <div className="flex items-center justify-start gap-2">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100">
+
+              {/* User Profile Footer */}
+              <div className="pt-6 mt-6 border-t border-zinc-100 flex items-center gap-3">
+                <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-indigo-100 shrink-0">
                   <Image
                     src={review.avatar}
                     alt={review.name}
                     fill
+                    sizes="44px"
                     className="object-cover"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold">{review.name}</h3>
-                  <p className="text-sm text-zinc-500">{review.role}</p>
+                  <h3 className="font-bold text-zinc-900 text-sm">
+                    {review.name}
+                  </h3>
+                  <p className="text-xs text-zinc-500 font-medium">
+                    {review.role}
+                  </p>
                 </div>
               </div>
-            </div>
+            </Card>
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
