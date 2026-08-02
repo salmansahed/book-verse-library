@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "@heroui/react";
+import { FaArrowRight } from "react-icons/fa";
 import BookCard from "../All-Books/BookCard";
 
 const FeaturedBooks = async () => {
@@ -8,16 +11,44 @@ const FeaturedBooks = async () => {
   const fourBooks = books.slice(0, 4);
 
   return (
-    <div className="container mx-auto px-2 mt-16 sm:mt-18 md:mt-20 xl:mt-26 mb-12">
-      <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-8 md:mb-10">
-        Featured Books
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <section className="container mx-auto px-4 my-16 md:my-24">
+      {/* Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full inline-block mb-3">
+            Handpicked Classics
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight">
+            Featured{" "}
+            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Books
+            </span>
+          </h2>
+          <p className="text-zinc-500 text-sm sm:text-base mt-2 max-w-lg">
+            Explore our top-rated recommendations and most popular titles this
+            season.
+          </p>
+        </div>
+
+        {/* View All Button */}
+        <Link href="/all-books">
+          <Button
+            variant="ghost"
+            className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 font-semibold gap-2"
+          >
+            Explore All Books
+            <FaArrowRight className="text-xs" />
+          </Button>
+        </Link>
+      </div>
+
+      {/* Books Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
         {fourBooks.map((book) => (
-          <BookCard key={book.id} book={book} />
+          <BookCard key={book.id || book._id} book={book} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
