@@ -9,7 +9,7 @@ import UpdateProfileForm from "@/components/Profile/UpdateProfileForm";
 
 const UpdateProfilePage = () => {
   return (
-    <div className="min-h-screen bg-zinc-50/50 py-12 md:py-16 px-4 sm:px-6 flex items-center justify-center">
+    <div className="min-h-[80vh] sm:min-h-screen bg-zinc-50/50 py-12 md:py-16 px-4 sm:px-6 flex items-center justify-center">
       <SessionWatcher />
       <div className="w-full max-w-md">
         <UpdateProfileForm />

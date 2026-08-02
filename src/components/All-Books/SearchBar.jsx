@@ -38,24 +38,32 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="relative">
+    <div className="flex items-center justify-center w-full px-4">
+      {/* Unified Professional Search Container */}
+      <div className="relative flex items-center w-full max-w-xl bg-white/90 backdrop-blur-xl border border-zinc-200/90 rounded-2xl shadow-xs hover:shadow-md focus-within:border-indigo-600 focus-within:ring-4 focus-within:ring-indigo-600/10 transition-all duration-300 p-1.5">
+        {/* Search Icon */}
+        <div className="pl-3.5 text-zinc-400 flex items-center pointer-events-none">
+          <IoSearch className="text-xl" />
+        </div>
+
+        {/* Search Input */}
         <input
           type="text"
           value={searchTerm}
           onChange={handleChange}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-          placeholder="Search book..."
-          className="rounded-xl border-2 rounded-r-none py-1.5 border-r-0 w-60 sm:w-100 md:w-150 pl-9 shadow focus:outline-none focus:border-indigo-600 transition-colors"
+          placeholder="Search your favorite books..."
+          className="w-full bg-transparent px-3 py-2 text-sm sm:text-base font-medium text-zinc-800 placeholder:text-zinc-400 focus:outline-none"
         />
-        <IoSearch className="absolute left-2 top-2 text-2xl text-zinc-500" />
+
+        {/* Search Button */}
+        <Button
+          onClick={handleSearch}
+          className="h-10 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-sm transition-all duration-300 shrink-0 cursor-pointer"
+        >
+          Search
+        </Button>
       </div>
-      <Button
-        onClick={handleSearch}
-        className="rounded-xl rounded-l-none py-5 shadow bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all"
-      >
-        Search
-      </Button>
     </div>
   );
 };
