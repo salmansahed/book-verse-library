@@ -25,7 +25,7 @@ const FeaturedBooksList = async () => {
 // Main Server Component
 const FeaturedBooks = () => {
   return (
-    <section className="container mx-auto px-4 my-16 md:my-24">
+    <section className="container mx-auto px-4 my-16 md:mb-24 mt-16">
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div>
