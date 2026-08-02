@@ -14,12 +14,9 @@ const AllBooksPage = async ({ searchParams }) => {
   const params = await searchParams;
   const selectedCategory = params?.category || "All";
   const searchQuery = params?.search || "";
-  const res = await fetch(
-    "https://book-verse-library-server.onrender.com/books",
-    {
-      cache: "no-store",
-    },
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
+    cache: "no-store",
+  });
   const books = await res.json();
 
   const categories = ["All", ...new Set(books.map((book) => book.category))];

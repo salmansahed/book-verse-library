@@ -1,12 +1,14 @@
 "use client";
+
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { IoLogInOutline } from "react-icons/io5";
-import { authClient } from "@/lib/auth-client";
+import { HiUserPlus } from "react-icons/hi2";
 import { FaSignOutAlt } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -15,130 +17,173 @@ const Navbar = () => {
   const { data, isPending } = authClient.useSession();
   const user = data?.user;
 
-  const menuItems = (
-    <>
-      <li
-        className={`transition-all duration-300 ease-in-out font-medium px-3 py-0.5 rounded-full ${pathName === "/" ? "bg-indigo-50 border border-indigo-200 text-indigo-600" : "text-zinc-600 hover:text-indigo-600"}`}
-      >
-        <Link href={"/"} onClick={() => setOpen(false)}>
-          Home
-        </Link>
-      </li>
-      <li
-        className={`transition-all duration-300 ease-in-out font-medium px-3 py-0.5 rounded-full ${pathName === "/all-books" ? "bg-indigo-50 border border-indigo-200 text-indigo-600" : "text-zinc-600 hover:text-indigo-600"}`}
-      >
-        <Link href={"/all-books"} onClick={() => setOpen(false)}>
-          All Books
-        </Link>
-      </li>
-      <li
-        className={`transition-all duration-300 ease-in-out font-medium px-3 py-0.5 rounded-full ${pathName === "/my-profile" ? "bg-indigo-50 border border-indigo-200 text-indigo-600" : "text-zinc-600 hover:text-indigo-600"}`}
-      >
-        <Link href={"/my-profile"} onClick={() => setOpen(false)}>
-          My Profile
-        </Link>
-      </li>
-    </>
-  );
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "All Books", href: "/all-books" },
+    { name: "My Profile", href: "/my-profile" },
+  ];
 
   return (
-    <div className="shadow py-4 relative">
-      {" "}
-      {/* Relative */}
-      <div className="flex justify-between items-center container mx-auto px-2">
-        <div>
-          <Link
-            href={"/"}
-            className="text-2xl font-extrabold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent"
-          >
+    <header className="sticky top-0 z-50 w-full border-b border-zinc-200/60 bg-white/80 backdrop-blur-md transition-all">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3.5">
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-2xl font-black tracking-tight bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             BookVerse
-          </Link>
-        </div>
+          </span>
+        </Link>
 
-        {/* Desktop Menu */}
-        <ul className="lg:flex items-center gap-8 xl:gap-12 hidden">
-          {menuItems}
-        </ul>
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) => {
+            const isActive = pathName === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  isActive
+                    ? "text-indigo-600 bg-indigo-50/80 shadow-xs"
+                    : "text-zinc-600 hover:text-indigo-600 hover:bg-zinc-100/60"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
 
-        {/* Hamburger Icon */}
-        <div className="lg:hidden flex items-center gap-3">
-          {user && (
-            <p className="text-xl font-semibold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent">
-              Welcome, {user?.name?.split(" ").slice(0, 1).join(" ")}
-            </p>
-          )}
-          <Hamburger size={22} toggled={isOpen} toggle={setOpen} />
-        </div>
-
-        {/* Desktop Login Button */}
-
-        <div className="lg:block hidden">
+        {/* Desktop User Section */}
+        <div className="hidden lg:flex items-center gap-3">
           {isPending ? (
-            <div className="flex items-center space-x-2">
-              <div className="w-24 h-5 rounded-full bg-gray-300  animate-pulse"></div>
-              <div className="w-25 h-9 rounded-full bg-gray-300 animate-pulse"></div>
+            <div className="flex items-center gap-3">
+              <div className="w-22 h-9 rounded-full bg-zinc-200 animate-pulse" />
+              <div className="w-22 h-9 rounded-full bg-zinc-200 animate-pulse" />
             </div>
           ) : user ? (
-            <div className="flex items-center gap-3">
-              <h2 className="text-xl font-semibold bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700 bg-clip-text text-transparent">
-                Welcome, {user?.name?.split(" ").slice(0, 2).join(" ")}
-              </h2>
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-semibold text-zinc-700">
+                Welcome,{" "}
+                <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold">
+                  {user?.name?.split(" ")[0]}
+                </span>
+              </span>
               <Button
-                className={
-                  "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
-                }
+                variant="danger-soft"
                 onClick={async () => await authClient.signOut()}
+                className="font-medium"
               >
                 Logout
-                <FaSignOutAlt />
+                <FaSignOutAlt className="text-sm" />
               </Button>
             </div>
           ) : (
-            <Link href={"/auth/login"}>
-              <Button
-                className={
-                  "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
-                }
-              >
-                <IoLogInOutline />
-                Login
-              </Button>
-            </Link>
-          )}
-        </div>
-      </div>
-      {/* Mobile Menu (Conditional Rendering) */}
-      {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t p-4 z-50">
-          <ul className="flex flex-col gap-4 items-center">
-            {menuItems}
-            {user ? (
-              <Button
-                className={
-                  "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
-                }
-                onClick={async () => await authClient.signOut()}
-              >
-                Logout
-                <FaSignOutAlt />
-              </Button>
-            ) : (
-              <Link href={"/auth/login"}>
+            <div className="flex items-center gap-2.5">
+              <Link href="/auth/login">
                 <Button
-                  className={
-                    "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-700"
-                  }
-                  onClick={() => setOpen(false)}
+                  variant="outline"
+                  className="border-zinc-300 text-zinc-700 hover:bg-zinc-100 font-semibold"
                 >
-                  <IoLogInOutline />
+                  <IoLogInOutline className="text-lg" />
                   Login
                 </Button>
               </Link>
-            )}
-          </ul>
+
+              <Link href="/auth/registration">
+                <Button
+                  variant="secondary"
+                  className="bg-linear-to-r from-indigo-600 to-purple-600 text-white hover:opacity-95 font-semibold shadow-xs"
+                >
+                  <HiUserPlus className="text-lg" />
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile Hamburger & Welcome Text */}
+        <div className="flex items-center gap-3 lg:hidden">
+          {user && (
+            <span className="text-sm font-bold bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Hi, {user?.name?.split(" ")[0]}
+            </span>
+          )}
+          <Hamburger
+            size={20}
+            toggled={isOpen}
+            toggle={setOpen}
+            color="#4F46E5"
+          />
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="lg:hidden border-t border-zinc-100 bg-white/95 backdrop-blur-lg px-4 py-6 shadow-xl transition-all">
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((link) => {
+              const isActive = pathName === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`px-4 py-2.5 rounded-xl text-base font-semibold transition-all ${
+                    isActive
+                      ? "text-indigo-600 bg-indigo-50 font-bold"
+                      : "text-zinc-600 hover:text-indigo-600 hover:bg-zinc-50"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+
+            <div className="pt-4 mt-2 border-t border-zinc-100">
+              {user ? (
+                <Button
+                  variant="danger-soft"
+                  onClick={async () => {
+                    setOpen(false);
+                    await authClient.signOut();
+                  }}
+                  className="w-full justify-center font-medium"
+                >
+                  Logout
+                  <FaSignOutAlt />
+                </Button>
+              ) : (
+                <div className="flex flex-col gap-2.5">
+                  <Link href="/auth/login" onClick={() => setOpen(false)}>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-center border-zinc-300 text-zinc-700 font-semibold"
+                    >
+                      <IoLogInOutline className="text-lg" />
+                      Login
+                    </Button>
+                  </Link>
+
+                  <Link
+                    href="/auth/registration"
+                    onClick={() => setOpen(false)}
+                  >
+                    <Button
+                      variant="secondary"
+                      className="w-full justify-center bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold"
+                    >
+                      <HiUserPlus className="text-lg" />
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </nav>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 

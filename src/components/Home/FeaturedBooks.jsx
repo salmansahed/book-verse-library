@@ -1,9 +1,9 @@
 import BookCard from "../All-Books/BookCard";
 
 const FeaturedBooks = async () => {
-  const res = await fetch(
-    "https://book-verse-library-server.onrender.com/books",
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
+    cache: "no-store",
+  });
   const books = await res.json();
   const fourBooks = books.slice(0, 4);
 

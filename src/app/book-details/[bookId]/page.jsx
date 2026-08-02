@@ -14,7 +14,7 @@ const BookDetails = async ({ params }) => {
   const { bookId } = await params;
 
   const res = await fetch(
-    `https://book-verse-library-server.onrender.com/books/${bookId}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/books/${bookId}`,
     { cache: "no-store" },
   );
 
