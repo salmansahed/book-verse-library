@@ -90,10 +90,7 @@ const Navbar = () => {
               </Link>
 
               <Link href="/auth/registration">
-                <Button
-                  variant="secondary"
-                  className="bg-linear-to-r from-indigo-600 to-purple-600 text-white hover:opacity-95 font-semibold shadow-xs"
-                >
+                <Button variant="secondary" className="primary-btn">
                   <HiUserPlus className="text-lg" />
                   Sign Up
                 </Button>
@@ -169,10 +166,7 @@ const Navbar = () => {
                     href="/auth/registration"
                     onClick={() => setOpen(false)}
                   >
-                    <Button
-                      variant="secondary"
-                      className="w-full justify-center bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold"
-                    >
+                    <Button variant="secondary" className="w-full primary-btn">
                       <HiUserPlus className="text-lg" />
                       Sign Up
                     </Button>

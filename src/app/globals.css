@@ -1,2 +1,6 @@
 @import "tailwindcss";
-@import "@heroui/styles"; 
+@import "@heroui/styles";
+
+@utility primary-btn {
+  @apply bg-linear-to-r from-indigo-600 to-purple-600 text-white hover:opacity-95 font-semibold shadow-xs;
+}
