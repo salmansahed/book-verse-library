@@ -1,15 +1,29 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { FaArrowRight } from "react-icons/fa";
 import BookCard from "../All-Books/BookCard";
+import { FeaturedBooksSkeleton } from "./BookCardSkeleton";
 
-const FeaturedBooks = async () => {
+// Async Server Component: Data Fetcher
+const FeaturedBooksList = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
     cache: "no-store",
   });
   const books = await res.json();
   const fourBooks = books.slice(0, 4);
 
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+      {fourBooks.map((book) => (
+        <BookCard key={book.id || book._id} book={book} />
+      ))}
+    </div>
+  );
+};
+
+// Main Server Component
+const FeaturedBooks = () => {
   return (
     <section className="container mx-auto px-4 my-16 md:my-24">
       {/* Section Header */}
@@ -42,12 +56,10 @@ const FeaturedBooks = async () => {
         </Link>
       </div>
 
-      {/* Books Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-        {fourBooks.map((book) => (
-          <BookCard key={book.id || book._id} book={book} />
-        ))}
-      </div>
+      {/* Suspense Boundary wrapping only the dynamic content */}
+      <Suspense fallback={<FeaturedBooksSkeleton />}>
+        <FeaturedBooksList />
+      </Suspense>
     </section>
   );
 };
