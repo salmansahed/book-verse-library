@@ -9,6 +9,7 @@ import { IoLogInOutline } from "react-icons/io5";
 import { HiUserPlus } from "react-icons/hi2";
 import { FaSignOutAlt } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
+import LogoutModal from "../Auth/LogoutModal";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -68,14 +69,7 @@ const Navbar = () => {
                   {user?.name?.split(" ")[0]}
                 </span>
               </span>
-              <Button
-                variant="danger-soft"
-                onClick={async () => await authClient.signOut()}
-                className="font-medium"
-              >
-                Logout
-                <FaSignOutAlt className="text-sm" />
-              </Button>
+              <LogoutModal />
             </div>
           ) : (
             <div className="flex items-center gap-2.5">
@@ -139,17 +133,7 @@ const Navbar = () => {
 
             <div className="pt-4 mt-2 border-t border-zinc-100">
               {user ? (
-                <Button
-                  variant="danger-soft"
-                  onClick={async () => {
-                    setOpen(false);
-                    await authClient.signOut();
-                  }}
-                  className="w-full justify-center font-medium"
-                >
-                  Logout
-                  <FaSignOutAlt />
-                </Button>
+                <LogoutModal />
               ) : (
                 <div className="flex flex-col gap-2.5">
                   <Link href="/auth/login" onClick={() => setOpen(false)}>
