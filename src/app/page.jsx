@@ -4,6 +4,7 @@ import FeaturedBooks from "@/components/Home/FeaturedBooks";
 import HomeMarquee from "@/components/Home/HomeMarquee";
 import HowItWorksSection from "@/components/Home/HowItWorksSection";
 import Newsletter from "@/components/Home/Newsletter";
+import StatsSection from "@/components/Home/StatsSection";
 import Testimonials from "@/components/Home/Testimonials";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <CategoriesSection />
       <FeaturedBooks />
       <HowItWorksSection />
+      <StatsSection />
       <Testimonials />
       <Newsletter />
     </div>
